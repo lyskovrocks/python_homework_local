@@ -36,15 +36,15 @@ def reformat_date(date_list: list):
     list_interval += [(date_list[1]['day'] + ': ' + date_list[1]['interval'])]
     # в цикле использовать срез для поиска интервала предыдущего дня
     print(list_interval)
-    # for d1, d2 in zip(date_list, date_list[1:]):
-    #     if d2['interval'] == d1['interval']:
-    #         if d2['interval'] in dict_interval:
-    #             dict_interval[d2['interval']] += d2['day']
-    #         else:
-    #             dict_interval[d2['interval']] = d2['day']
-    #     else:
-    #         dict_interval[d2['interval']] = d2['day']
-    # print(dict_interval)
+    for d1, d2 in zip(date_list, date_list[1:]):
+        if d2['interval'] == d1['interval']:
+            if d2['interval'] in dict_interval:
+                dict_interval[d2['interval']] += d2['day']
+            else:
+                dict_interval[d2['interval']] = d2['day']
+        else:
+            dict_interval[d2['interval']] = d2['day']
+    print(dict_interval)
 
     #     dict_interval[d1['from'] + d1['to']] = d1['day']
     #     # if d1['from'] == d2['from'] and d1['to'] == d2['to']:
