@@ -34,36 +34,51 @@
 1. каждый интервал - это список из двух элементов
 2. в каждом интервале второй элемент больше или равен первому
 """
+def check_intervals(intervals: list):
+    for i in intervals:
+        if type(i) != list or len(i) != 2 or i[-1] < i[0]:
+            return False
+    return True
+
 
 def sum_len_intervals(intervals: list):
-    ...
+    sum_len = 0
+    for l in intervals:
+        sum_len += l[-1] - l[0]
+    return sum_len
+
 
 def sum_intervals(intervals: list):
-    ...
+    sum_int = 0
+    for l in intervals:
+        sum_int += sum(l)
+    return sum_int
 
-# interval_1 = [
-#     [1, 2],
-#     [6, 10],
-#     [11, 15]
-# ]
-# print(sum_len_intervals(interval_1))  # 9
-# print(sum_intervals(interval_1))  # 45
 
-# interval_2 = [
-#    [1, 4],
-#    [7, 10],
-#    [3, 5]
-# ]
-# print(sum_len_intervals(interval_2))  # 8
-# print(sum_intervals(interval_2))  # 30
-#
-# interval_3 = [
-#    [1, 5],
-#    [10, 20],
-#    [1, 6],
-#    [16, 19],
-#    [5, 11]
-# ]
-# print(sum_len_intervals(interval_3))  # 28
-# print(sum_intervals(interval_3))  # 94
+interval_1 = [
+    [1, 2],
+    [6, 10],
+    [11, 15]
+]
+print(sum_len_intervals(interval_1))  # 9
+print(sum_intervals(interval_1))  # 45
+
+interval_2 = [
+   [1, 4],
+   [7, 10],
+   [3, 5]
+]
+print(sum_len_intervals(interval_2))  # 8
+print(sum_intervals(interval_2))  # 30
+
+interval_3 = [
+   [1, 5],
+   [10, 20],
+   [1, 6],
+   [16, 19],
+   [5, 11]
+]
+print(sum_len_intervals(interval_3))  # 28
+print(sum_intervals(interval_3))  # 94
+print(check_intervals(interval_3))
 

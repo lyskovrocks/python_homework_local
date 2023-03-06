@@ -26,42 +26,24 @@
 def reformat_date(date_list: list):
     week = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
     date_list.sort(key=lambda x: x['day'])  # Сортировка по значнию ключа day
-    list_interval = []
+
     # str_date_list = ''
     for d in date_list:
         d['day'] = week[d['day']]  # Замена чисел на дни недели
-        d['interval'] = d['from'] + ' - ' + d['to'] # добавление интервалов в словарь
+        d['interval'] = d['from'] + ' - ' + d['to']  # добавление интервалов в словарь
+        d.pop('from')
+        d.pop('to')
 
-    list_interval.append(date_list[0]['day'] + ': ' + date_list[0]['interval'])
-    list_interval += [(date_list[1]['day'] + ': ' + date_list[1]['interval'])]
-    # в цикле использовать срез для поиска интервала предыдущего дня
-    print(list_interval)
-    for d1, d2 in zip(date_list, date_list[1:]):
-        if d2['interval'] == d1['interval']:
-            if d2['interval'] in dict_interval:
-                dict_interval[d2['interval']] += d2['day']
-            else:
-                dict_interval[d2['interval']] = d2['day']
+    result_list_interval = [date_list[0]]
+    for d in date_list[1:]:
+        if d['interval'] != result_list_interval[-1]['interval']:
+            result_list_interval.append(d)
         else:
-            dict_interval[d2['interval']] = d2['day']
-    print(dict_interval)
-
-    #     dict_interval[d1['from'] + d1['to']] = d1['day']
-    #     # if d1['from'] == d2['from'] and d1['to'] == d2['to']:
-
-
-
-
-
-
-
-
-
-    # str_date_list += d['day'] + ': ' + d['from'] + ' - ' + d['to'] + '\n'
-    # print(str_date_list)
-
-    return date_list
-
+            result_list_interval[-1]['day'] = result_list_interval[-1]['day'].split('-')[0] + '-' + d['day']
+    result_str = ''
+    for d in result_list_interval:
+        result_str += d['day'] + ': ' + d['interval'] + '\n'
+    return result_str
 
 print(reformat_date([
     {
