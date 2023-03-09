@@ -6,15 +6,14 @@
 1, 1, 1, 3, 5, 9, 17...
 """
 
+
 def fibo(n):
-    res = [1, 1, 1]
-    for i in range(3, n):
-        res.append(res[i-2]+res[i-1]+res[i-3])
-    return res[-1]
-
-print(fibo(5)) # 5
-print(fibo(80)) # 351892690889787253855
-print(fibo(9)) #57
+    fibo_list = [1, 1, 1]
+    for i in range(n - 3):
+        fibo_list.append(fibo_list[-3] + fibo_list[-2] + fibo_list[-1])
+    return fibo_list[-1]
 
 
-
+print(fibo(5))  # 5
+print(fibo(80))  # 351892690889787253855
+print(fibo(9))  # 57

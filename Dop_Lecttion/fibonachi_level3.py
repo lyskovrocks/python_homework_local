@@ -15,7 +15,12 @@ fibo(9, 3)   #57
 """
 
 def fibo(n, start):
-    ...
+    fibo_list = []
+    for i in range(start):
+        fibo_list.append(1)
+    for i in range(n - start):
+        fibo_list.append(sum(fibo_list[:start-start*2-1:-1]))
+    return(fibo_list[-1])
 
 print(fibo(9, 3)) #57
 print(fibo(8, 2)) #21

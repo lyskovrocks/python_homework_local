@@ -13,8 +13,17 @@ fibo(3) - должно вернуть 2
 """
 
 def fibo(n):
-    ...
+    fibo_list = [1, 1]
+    if int(n) == n and n > 0:
+        for i in range(n - 2):
+            fibo_list.append(fibo_list[-1] + fibo_list[-2])
+        return (fibo_list[-1])
+    else:
+        return 'Введено ненатуральное число'
 
+
+print(fibo(-1))
+print(fibo(4.6))
 print(fibo(8)) # 21
 print(fibo(80)) # 23416728348467685
 print(fibo(5)) #5
